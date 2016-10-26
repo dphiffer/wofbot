@@ -53,7 +53,7 @@ function searchWithQuery(channel, searchQuery) {
 
   var query = querystring.stringify({
     method: 'whosonfirst.places.search',
-    q: searchQuery,
+    preferred: searchQuery,
     access_token: wofToken
   });
 
@@ -87,7 +87,7 @@ function respondWithResults(channel, searchQuery, rsp) {
   console.log(`${searchQuery}: ${rsp.total} results`);
   var results = rsp.results;
 
-  var text = '<https://whosonfirst.mapzen.com/spelunker/search/?q=' +
+  var text = '<https://whosonfirst.mapzen.com/spelunker/search/?preferred=' +
              encodeURIComponent(searchQuery) + '|' +
              rsp.total + ' result' +
              (rsp.total == 1 ? '' : 's') +
