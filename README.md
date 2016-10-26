@@ -28,3 +28,5 @@ export SLACK_API_TOKEN='...'
 export WOF_API_TOKEN='...'
 node index.js
 ```
+
+Then you should be able to ask it questions in Slack, either using the direct messages feature, or by mentioning `@wofbot` in a channel it's been invited to.
