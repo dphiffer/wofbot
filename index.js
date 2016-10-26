@@ -95,7 +95,7 @@ function respondWithResults(channel, searchQuery, rsp) {
 
   var attachments = [];
 
-  for (var result, i = 0; i < Math.floor(5, results.length); i++) {
+  for (var result, i = 0; i < Math.min(5, results.length); i++) {
     result = results[i];
     attachments.push((i + 1) + '. <https://whosonfirst.mapzen.com/spelunker/id/' + result['wof:id'] + '/|' + result['wof:name'] + '> (' + result['wof:placetype'] + ')');
   }
