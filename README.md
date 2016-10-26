@@ -2,6 +2,10 @@
 
 __wofbot__ is a [Slack bot](https://api.slack.com/bot-users) that searches [Who's On First records](https://whosonfirst.mapzen.com/) using the [API](https://whosonfirst.mapzen.com/api/methods/).
 
+It looks a little like this:
+
+![screenshot](https://raw.githubusercontent.com/dphiffer/wofbot/master/screenshot.png)
+
 It is based on the official [node-slack-sdk](https://github.com/slackhq/node-slack-sdk) codebase, written in Node.js.
 
 ## Requirements
