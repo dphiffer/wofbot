@@ -24,7 +24,9 @@ rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, function handleRTMAuthenticated(rtmStart
 
 rtm.on(RTM_EVENTS.MESSAGE, function (message) {
 
-  if (! botId) {
+  if (! botId ||
+      ! message.text ||
+      ! message.channel) {
     return;
   }
 
@@ -54,6 +56,7 @@ function searchWithQuery(channel, searchQuery) {
   var query = querystring.stringify({
     method: 'whosonfirst.places.search',
     preferred: searchQuery,
+    extras: 'wof:label',
     access_token: wofToken
   });
 
@@ -95,9 +98,15 @@ function respondWithResults(channel, searchQuery, rsp) {
 
   var attachments = [];
 
-  for (var result, i = 0; i < Math.min(5, results.length); i++) {
+  for (var result, name, i = 0; i < Math.min(5, results.length); i++) {
     result = results[i];
-    attachments.push((i + 1) + '. <https://whosonfirst.mapzen.com/spelunker/id/' + result['wof:id'] + '/|' + result['wof:name'] + '> (' + result['wof:placetype'] + ')');
+    if (result['wof:id']) {
+      name = result['wof:name'];
+      if (result['wof:label'] != '') {
+        name = result['wof:label'];
+      }
+      attachments.push((i + 1) + '. <https://whosonfirst.mapzen.com/spelunker/id/' + result['wof:id'] + '/|' + name + '> (' + result['wof:placetype'] + ')');
+    }
   }
   attachments = attachments.join('\n');
   attachments = [{
